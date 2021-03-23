@@ -1,0 +1,516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4CAF50"
+    tools:context=".HangmanActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/titleText"
+            style="@style/gameTitle"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:text="@string/hangman" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/hangmanImageConstraint"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6">
+
+                <ImageView
+                    android:id="@+id/baseImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/base" />
+
+                <ImageView
+                    android:id="@+id/poleImage"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:adjustViewBounds="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="1:15"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/pole" />
+
+                <ImageView
+                    android:id="@+id/anchorImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/base" />
+
+                <ImageView
+                    android:id="@+id/nooseImage"
+                    android:layout_width="15dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintVertical_bias="0
+"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/pole" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/infoBoardConstraint"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4">
+
+                <LinearLayout
+                    android:id="@+id/scoreLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/livesLinearLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.20999998">
+
+                    <TextView
+                        android:id="@+id/scoreTitleText"
+                        style="@style/infoBoardTitles"
+                        android:text="@string/scoreTitle" />
+
+                    <TextView
+                        android:id="@+id/scoreText"
+                        style="@style/infoBoardTitles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:text="0"
+                        tools:text="0" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/livesLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toTopOf="@+id/levelLinearLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/scoreLinearLayout">
+
+                    <TextView
+                        android:id="@+id/livesTitleText"
+                        style="@style/infoBoardTitles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/livesTitle"
+                        app:layout_constraintBottom_toTopOf="@+id/livesText"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/scoreText"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                    <TextView
+                        android:id="@+id/livesText"
+                        style="@style/infoBoardTitles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="6"
+                        app:layout_constraintBottom_toTopOf="@+id/levelTitleText"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/livesTitleText"
+                        tools:text="6" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/levelLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/livesLinearLayout">
+
+                    <TextView
+                        android:id="@+id/levelTitleText"
+                        style="@style/infoBoardTitles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/levelTitle" />
+
+                    <TextView
+                        android:id="@+id/levelText"
+                        style="@style/infoBoardTitles"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        tools:text="1" />
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/guessText"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/roboto"
+            android:gravity="center"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            tools:text="_ _ _ _ _ _ _ _ _" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/alphaRow1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4">
+
+            <Button
+                android:id="@+id/aBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_marginStart="8dp"
+                android:adjustViewBounds="true"
+
+                android:text="A"
+                app:layout_constraintBottom_toTopOf="@+id/hBtn"
+                app:layout_constraintEnd_toStartOf="@+id/bBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/bBtn"
+                style="@style/hangmanLetterBtn"
+                android:text="B"
+                app:layout_constraintBottom_toTopOf="@+id/iBtn"
+                app:layout_constraintEnd_toStartOf="@+id/cBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/aBtn"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/cBtn"
+                style="@style/hangmanLetterBtn"
+                android:text="C"
+                app:layout_constraintBottom_toTopOf="@+id/jBtn"
+                app:layout_constraintEnd_toStartOf="@+id/dBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/bBtn"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/dBtn"
+                style="@style/hangmanLetterBtn"
+                android:text="D"
+                app:layout_constraintBottom_toTopOf="@+id/kBtn"
+                app:layout_constraintEnd_toStartOf="@+id/eBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/cBtn"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/eBtn"
+                style="@style/hangmanLetterBtn"
+                android:text="E"
+                app:layout_constraintBottom_toTopOf="@+id/lBtn"
+                app:layout_constraintEnd_toStartOf="@+id/fBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/dBtn"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/fBtn"
+                style="@style/hangmanLetterBtn"
+                android:text="F"
+                app:layout_constraintBottom_toTopOf="@+id/mBtn"
+                app:layout_constraintEnd_toStartOf="@+id/gBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/eBtn"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/gBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_marginEnd="8dp"
+                android:text="G"
+                app:layout_constraintBottom_toTopOf="@+id/nBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/fBtn"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/hBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_marginStart="8dp"
+                android:layout_weight="0"
+                android:text="H"
+                app:layout_constraintBottom_toTopOf="@+id/oBtn"
+                app:layout_constraintEnd_toStartOf="@+id/iBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/aBtn" />
+
+            <Button
+                android:id="@+id/iBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_weight="0"
+                android:text="I"
+                app:layout_constraintBottom_toTopOf="@+id/pBtn"
+                app:layout_constraintEnd_toStartOf="@+id/jBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/hBtn"
+                app:layout_constraintTop_toBottomOf="@+id/bBtn" />
+
+            <Button
+                android:id="@+id/jBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_weight="0"
+                android:text="J"
+                app:layout_constraintBottom_toTopOf="@+id/qBtn"
+                app:layout_constraintEnd_toStartOf="@+id/kBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/iBtn"
+                app:layout_constraintTop_toBottomOf="@+id/cBtn" />
+
+            <Button
+                android:id="@+id/kBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_weight="0"
+                android:text="K"
+                app:layout_constraintBottom_toTopOf="@+id/rBtn"
+                app:layout_constraintEnd_toStartOf="@+id/lBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/jBtn"
+                app:layout_constraintTop_toBottomOf="@+id/dBtn" />
+
+            <Button
+                android:id="@+id/lBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_weight="0"
+                android:text="L"
+                app:layout_constraintBottom_toTopOf="@+id/sBtn"
+                app:layout_constraintEnd_toStartOf="@+id/mBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/kBtn"
+                app:layout_constraintTop_toBottomOf="@+id/eBtn" />
+
+            <Button
+                android:id="@+id/mBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_weight="0"
+                android:text="M"
+                app:layout_constraintBottom_toTopOf="@+id/tBtn"
+                app:layout_constraintEnd_toStartOf="@+id/nBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/lBtn"
+                app:layout_constraintTop_toBottomOf="@+id/fBtn" />
+
+            <Button
+                android:id="@+id/nBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="0"
+                android:text="N"
+                app:layout_constraintBottom_toTopOf="@+id/uBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/mBtn"
+                app:layout_constraintTop_toBottomOf="@+id/gBtn" />
+
+            <Button
+                android:id="@+id/oBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_marginStart="8dp"
+                android:layout_weight="0"
+                android:text="O"
+                app:layout_constraintBottom_toTopOf="@+id/vBtn"
+                app:layout_constraintEnd_toStartOf="@+id/pBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hBtn" />
+
+            <Button
+                android:id="@+id/pBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_weight="0"
+                android:text="P"
+                app:layout_constraintBottom_toTopOf="@+id/wBtn"
+                app:layout_constraintEnd_toStartOf="@+id/qBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/oBtn"
+                app:layout_constraintTop_toBottomOf="@+id/iBtn" />
+
+            <Button
+                android:id="@+id/qBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_weight="0"
+                android:text="Q"
+                app:layout_constraintBottom_toTopOf="@+id/xBtn"
+                app:layout_constraintEnd_toStartOf="@+id/rBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/pBtn"
+                app:layout_constraintTop_toBottomOf="@+id/jBtn" />
+
+            <Button
+                android:id="@+id/rBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_weight="0"
+                android:text="R"
+                app:layout_constraintBottom_toTopOf="@+id/yBtn"
+                app:layout_constraintEnd_toStartOf="@+id/sBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/qBtn"
+                app:layout_constraintTop_toBottomOf="@+id/kBtn" />
+
+            <Button
+                android:id="@+id/sBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_weight="0"
+                android:text="S"
+                app:layout_constraintBottom_toTopOf="@+id/zBtn"
+                app:layout_constraintEnd_toStartOf="@+id/tBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/rBtn"
+                app:layout_constraintTop_toBottomOf="@+id/lBtn" />
+
+            <Button
+                android:id="@+id/tBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_weight="0"
+                android:text="T"
+                app:layout_constraintBottom_toTopOf="@+id/yBtn"
+                app:layout_constraintEnd_toStartOf="@+id/uBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/sBtn"
+                app:layout_constraintTop_toBottomOf="@+id/mBtn" />
+
+            <Button
+                android:id="@+id/uBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:text="U"
+                app:layout_constraintBottom_toTopOf="@+id/zBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/tBtn"
+                app:layout_constraintTop_toBottomOf="@+id/nBtn" />
+
+            <Button
+                android:id="@+id/vBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_marginStart="8dp"
+                android:layout_weight="0"
+                android:text="V"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/wBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/oBtn" />
+
+            <Button
+                android:id="@+id/wBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_weight="0"
+                android:text="W"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/xBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/vBtn"
+                app:layout_constraintTop_toBottomOf="@+id/pBtn" />
+
+            <Button
+                android:id="@+id/xBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_weight="0"
+                android:text="X"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/yBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/wBtn"
+                app:layout_constraintTop_toBottomOf="@+id/qBtn" />
+
+            <Button
+                android:id="@+id/yBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_weight="0"
+                android:text="Y"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/zBtn"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/xBtn"
+                app:layout_constraintTop_toBottomOf="@+id/rBtn" />
+
+            <Button
+                android:id="@+id/zBtn"
+                style="@style/hangmanLetterBtn"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="0"
+                android:text="Z"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/yBtn"
+                app:layout_constraintTop_toBottomOf="@+id/sBtn" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

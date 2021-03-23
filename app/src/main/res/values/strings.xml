@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">MiniGameApplication</string>
+    <string name="play">PLAY</string>
+    <string name="settingsTile">SETTINGS</string>
+    <string name="scoreTitle">SCORE</string>
+    <string name="mainTitle">MINIGAME APP</string>
+    <string name="gameSelectionTitle">SELECT A GAME</string>
+    <string name="TicTacToe">TIC-TAC-TOE</string>
+    <string name="pong">PONG</string>
+    <string name="hangman">HANGMAN</string>
+    <string name="livesTitle">LIVES</string>
+    <string name="levelTitle">LEVEL</string>
+</resources>
